@@ -105,7 +105,24 @@ describe 'puppet::repo', :type => :class do
           })
         end
       end#no params
-
+      context 'when devel_repo is true' do
+        let (:params){{'devel_repo' => true}}
+        it 'should add the puppetlabs_devel apt source' do
+          should contain_apt__source('puppetlabs_devel').with({
+            :name=>"puppetlabs_devel",
+            :ensure=>"present",
+            :location=>"http://apt.puppetlabs.com",
+            :repos=>"devel",
+            :key=>"4BD6EC30",
+            :key_server=>"pgp.mit.edu",
+            :comment=>"puppetlabs_devel",
+            :release=>"UNDEF",
+            :include_src=>true,
+            :required_packages=>false,
+            :pin=>false
+          })
+        end
+      end#end devel_repo
     end
   end
 end
