@@ -105,7 +105,12 @@ describe 'puppet::repo', :type => :class do
           })
         end
       end#no params
-
+      context 'when devel_repo is true' do
+        let (:params){{'devel_repo' => true}}
+        it 'should do something different' do
+          binding.pry;
+        end
+      end#end devel_repo
     end
   end
 end
